@@ -2,3 +2,4 @@ flask==0.12.1
 flask-ask==0.9.8
 Flask-Cors==3.0.3
 requests==2.18.4
+cryptography<2.2
