@@ -15,7 +15,7 @@ from utils import clean_medication_name, human_and
 from bpstatemap import bpStateMap
 from prstatemap import prStateMap
 
-stateMap = bpStateMap
+stateMap = prStateMap
 
 class State:
     def __init__(self):
