@@ -96,7 +96,7 @@ def set_state_map_pr():
 def yes_intent():
     state.nextYes()
     if state.current == 'pr-refill':
-        pill_count_intent(98)
+        payment(98)
         return
     text = render_template(state.text_template())
     return question(text)
