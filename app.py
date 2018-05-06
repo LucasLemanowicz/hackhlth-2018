@@ -65,7 +65,7 @@ def redox():
 
 @app.route('/redox/data', methods=['GET'])
 def redox_data():
-    return str(redox_api.transmission)
+    return redox_api.transmission
 
 
 # Amazon Alexa Endpoints
