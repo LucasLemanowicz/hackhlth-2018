@@ -187,7 +187,7 @@ def make_appointment_intent(hour):
     availability = redox_api.get_schedule()
     if hour not in availability:
         text = render_template('schedule-conflict', hour=hour)
-        return statement(text)
+        return question(text)
 
     redox_api.make_appointment(hour)
 
