@@ -65,7 +65,7 @@ make-appointment: Ok great, I've made an appointment with Dr. Jones at {{ hour }
 make-appointment-card: |
   Appointment with Dr. Jones tomorrow at {{ hour }}:00 PM
 
-schedule-conflict: Unfortunately Dr. Jones is not available at {{ hour }} PM. How about {{ availability }} o'clock?
+schedule-conflict: Unfortunately Dr. Jones is not available at {{ hour }} PM. How about {{ availability }} PM?
 
 # final
 fr-welcome-greeting: Hi Lucas, have you taken your morning medication?
