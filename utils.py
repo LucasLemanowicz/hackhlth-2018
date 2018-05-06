@@ -1,3 +1,6 @@
+import re
+
+
 def human_and(item_list):
     if len(item_list) == 0:
         return ''
@@ -9,6 +12,13 @@ def human_and(item_list):
         return ' and '.join(item_list)
 
     return ', '.join(item_list[:-1]) + ' and ' + item_list[-1]
+
+
+def clean_medication_name(name):
+    try:
+        return re.search('[a-zA-Z-_ ]+', name).group()
+    except:
+        return name
 
 
 if __name__ == '__main__':

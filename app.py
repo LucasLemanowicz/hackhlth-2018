@@ -11,7 +11,7 @@ from flask_ask import (
 )
 from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
-from utils import human_and
+from utils import clean_medication_name, human_and
 
 
 # blood pressure path
@@ -185,7 +185,7 @@ def pill_count_intent(amount):
 
 @ask.intent('MedicationListIntent')
 def medication_list_intent():
-    medications = redox_api.medications()
+    medications = [clean_medication_name(m) for m in redox_api.medications()]
     medication_list = human_and(medications)
     count = len(medications)
 
