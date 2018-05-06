@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_cors import CORS
 from flask_ask import (
     Ask,
@@ -22,12 +22,18 @@ wallet = SoftheonWalletAPI(
     os.environ.get('SOFTHEON_CLIENT_SECRET', '')
 )
 
-
+# Web Endpoints
 @app.route('/', methods=['GET'])
 def home():
     return render_template('hello-world')
 
+# Redox Ednpoints
+@app.route('/redox/', methods=['GET', 'POST'])
+def redox():
+    if 'challenge' in request.args:
+        return request.args.get('challenge')
 
+# Amazon Alexa Endpoints
 @ask.launch
 def launched():
     text = render_template('welcome-statement')
@@ -63,10 +69,6 @@ def session_ended():
     return "{}", 200
 
 
-
-
-
-
 @ask.intent('HelloIntent')
 def hello(firstname):
     text = render_template('hello-name', name=firstname)
@@ -91,6 +93,7 @@ def payment(amount):
     return statement(payment_success).simple_card(success_card)
 
 
+# Launch the server
 if __name__ == '__main__':
     app.run(debug=True,
             host='0.0.0.0',
