@@ -28,7 +28,7 @@ def home():
     return render_template('hello-world')
 
 # Redox Ednpoints
-@app.route('/redox/', methods=['GET', 'POST'])
+@app.route('/redox', methods=['GET', 'POST'])
 def redox():
     if 'challenge' in request.args:
         return request.args.get('challenge')
