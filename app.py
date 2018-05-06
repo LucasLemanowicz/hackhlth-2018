@@ -4,6 +4,7 @@ from flask import Flask, render_template
 from flask_cors import CORS
 from flask_ask import (
     Ask,
+    question,
     request as ask_request,
     session as ask_session,
     statement
@@ -25,6 +26,45 @@ wallet = SoftheonWalletAPI(
 @app.route('/', methods=['GET'])
 def home():
     return render_template('hello-world')
+
+
+@ask.launch
+def launched():
+    text = render_template('welcome-statement')
+    return question(text)
+
+
+@ask.intent('YesIntent')
+def yes_intent():
+    text = render_template('pill-verification')
+    return question(text)
+
+
+@ask.intent('NoIntent')
+def no_intent():
+    text = render_template('pill-rejection')
+    return statement(text)
+
+
+@ask.intent('PillCountIntent', convert={'amount': int})
+def pill_count_intent(amount):
+    PILL_AMOUNT = 6
+
+    if amount != PILL_AMOUNT:
+        text = render_template('incorrect-pill-count', amount=PILL_AMOUNT)
+        return statement(text)
+
+    text = render_template('correct-pill-count')
+    return statement(text)
+
+
+@ask.session_ended
+def session_ended():
+    return "{}", 200
+
+
+
+
 
 
 @ask.intent('HelloIntent')

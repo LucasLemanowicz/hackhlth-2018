@@ -8,3 +8,13 @@ payment-success: Payment of {{ amount }} dollars succeeded. Thank you.
 
 payment-success-card: |
   Payment of ${{ amount }} succeeded (Transaction ID: {{ transaction_id }})
+
+welcome-statement: Good morning Edith! It's time for you to take your morning pills. Can you take them now?
+
+pill-verification: Great! How many pills are you taking?
+
+pill-rejection: Ok, that's fine. I will remind you later.
+
+incorrect-pill-count: Are you sure you shouldn't be taking {{ amount }} pills?
+
+correct-pill-count: Ok great, goodbye.
