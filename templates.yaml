@@ -27,13 +27,13 @@ redox-verification-error: Invalid Verification Token
 # blood pressure path
 bp-welcome-greeting: Hi Murray, it’s time to take your blood pressure. Can you take your blood pressure now.
 
-bp-measurement-yes: Great, I’ll give you a few minutes to do that.
+bp-measurement-yes: Great, I’ll give you a few minutes.
 
 bp-check-in-later: Okay. I'll check back in later. 
 
-bp-measurement-confirm: Okay, I heard you say {{ systolic }} over {{ diastolic }}. Is this correct?
+bp-measurement-confirm: Okay, I heard {{ systolic }} over {{ diastolic }}. Is this correct?
 
-bp-aspirin-prompt: Dr. Jones recommended that you take one aspirin pill if your blood pressure is at this level. Can you take an aspirin pill right now?
+bp-aspirin-prompt: Dr. Jones recommends an aspirin for this blood pressure level. Can you take one aspirin pill now?
 
 bp-yes-and-send-to-dr: Great, and can I send your blood pressure reading to Dr. Jones?
 
@@ -43,4 +43,4 @@ bp-okay-and-good-bye: Okay. Not a problem.
 
 bp-thanks-and-good-bye: Great. Thanks, Gertrude.
 
-bp-measurement-again: I'm sorry. Could you repeat your blood pressure? 
+bp-measurement-again: I'm sorry. Can you repeat your blood pressure? 
