@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from flask_ask import (
     Ask,
@@ -65,7 +65,7 @@ def redox():
 
 @app.route('/redox/data', methods=['GET'])
 def redox_data():
-    return redox_api.transmission
+    return jsonify(redox_api.transmission)
 
 
 # Amazon Alexa Endpoints
