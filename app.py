@@ -15,7 +15,7 @@ from utils import clean_medication_name, human_and
 from bpstatemap import bpStateMap
 from prstatemap import prStateMap
 
-stateMap = prStateMap
+stateMap = bpStateMap
 
 class State:
     def __init__(self):
@@ -85,7 +85,7 @@ def launched():
 @ask.intent('PRPathIntent')
 def set_state_map_pr():
     stateMap = prStateMap
-    return
+    return state('Okay, path changed to refill')
 
 
 @ask.intent('YesIntent')
@@ -116,7 +116,6 @@ def bp_intent(systolic, diastolic):
 
 @ask.intent('PillCountIntent', convert={'amount': int})
 def pill_count_intent(amount):
-    state.next()
     pill_amount = redox_api.medication_count()
 
     if amount != pill_amount:
