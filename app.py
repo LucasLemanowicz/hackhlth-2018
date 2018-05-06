@@ -12,7 +12,7 @@ from flask_ask import (
 from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
 from utils import clean_medication_name, human_and
-from statemaps import bpStateMap
+from bpstatemap import bpStateMap
 
 stateMap = bpStateMap
 

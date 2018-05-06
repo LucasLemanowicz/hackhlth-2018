@@ -63,5 +63,3 @@ bpStateMap = {
         'text-template': 'bp-thanks-and-good-bye'
     }
 }
-
-# prescription refill path
