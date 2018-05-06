@@ -13,6 +13,7 @@ from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
 from utils import clean_medication_name, human_and
 from bpstatemap import bpStateMap
+from prstatemap import prStateMap
 
 stateMap = bpStateMap
 
@@ -81,10 +82,18 @@ def launched():
     text = render_template(state.text_template())
     return question(text)
 
+@ask.intent('PRPathIntent')
+def set_state_map_pr():
+    stateMap = prstatemap
+    return
+
 
 @ask.intent('YesIntent')
 def yes_intent():
     state.nextYes()
+    if (state.current == 'pr-refill'):
+        pill_count_intent(98)
+        return
     text = render_template(state.text_template())
     return question(text)
 
@@ -111,11 +120,11 @@ def pill_count_intent(amount):
     pill_amount = redox_api.medication_count()
 
     if amount != pill_amount:
-        text = render_template('incorrect-pill-count', amount=pill_amount)
+        text = render_template('pr-incorrect-pill-count', amount=pill_amount)
         return statement(text)
 
-    text = render_template('correct-pill-count')
-    return statement(text)
+    text = render_template('pr-pill-count-confirmation', amount=pill_amount)
+    return question(text)
 
 
 @ask.intent('MedicationListIntent')

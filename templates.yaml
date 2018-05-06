@@ -15,10 +15,6 @@ pill-verification: Great! How many pills are you taking?
 
 pill-rejection: Ok, that's fine. I will remind you later.
 
-incorrect-pill-count: Are you sure you shouldn't be taking {{ amount }} pills?
-
-correct-pill-count: Ok great, goodbye.
-
 medication-list: |
   You have {{ count }} medications to take today: {{ medications }}
 
@@ -46,3 +42,16 @@ bp-thanks-and-good-bye: Great. Thanks, Gertrude.
 bp-measurement-again: I'm sorry. Can you repeat your blood pressure? 
 
 # prescription refill path
+pr-welcome-greeting: Good morning Murray! It’s time for your morning pills. Can you take them now?
+
+pr-pill-count-check: Great! How many pills are you taking?
+
+pr-will-check-again: Okay, I'll check in later.
+
+pr-incorrect-pill-count: Are you sure you shouldn't be taking {{ amount }} pills?
+
+pr-pill-count-confirmation: I heard {{ amount }}. That is correct. It’s been three weeks since your last refill. Should I refill your prescription with Main Street Pharmacy using the VISA card on file ending with 4112?
+
+pr-refill-no: Okay. Not a problem.
+
+pr-refill: Done.
