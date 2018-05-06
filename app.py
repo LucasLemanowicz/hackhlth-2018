@@ -122,13 +122,17 @@ def bp_intent(systolic, diastolic):
 @ask.intent('PillCountIntent', convert={'amount': int})
 def pill_count_intent(amount):
     pill_amount = redox_api.medication_count()
+    medications = [clean_medication_name(m) for m in redox_api.medications()]
+    medication_list = human_and(medications)
 
     if amount != pill_amount:
         text = render_template('pr-incorrect-pill-count', amount=pill_amount)
         return statement(text)
 
     state.next()
-    text = render_template('pr-pill-count-confirmation', amount=pill_amount)
+    text = render_template('pr-pill-count-confirmation',
+                           medications=medication_list,
+                           low_on=medications[0])
     return question(text)
 
 
