@@ -154,7 +154,7 @@ def pill_count_intent(amount):
 
 @ask.intent('MedicationListIntent')
 def medication_list_intent():
-    medication_list = ', '.join(redox.medications())
+    medication_list = ', '.join(redox_api.medications())
     count = len(medication_list)
     text = render_template('medication-list',
                            medications=medication_list,
