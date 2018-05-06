@@ -32,7 +32,8 @@ def hello(firstname):
 def payment(payment_amount):
 
     PAYMENT_FAILURE = 'Payment failed, please try again.'
-    PAYMENT_SUCCESS = 'Payment succeeded. Thank you.'
+    PAYMENT_SUCCESS = 'Payment of {} dollars succeeded. Thank you.'.format(
+        payment_amount)
 
     status, data = wallet.make_payment(payment_amount)
     if not status:
