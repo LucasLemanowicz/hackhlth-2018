@@ -97,7 +97,7 @@ def set_state_map_pr():
 def yes_intent():
     state.nextYes()
     if state.current == 'pr-refill':
-        return payment(98)
+        return payment(28)
 
     text = render_template(state.text_template())
     return question(text)
@@ -106,6 +106,8 @@ def yes_intent():
 @ask.intent('NoIntent')
 def no_intent():
     state.nextNo()
+    if state.current == 'pr-card-check-no':
+        return payment(98)
     text = render_template(state.text_template())
     return question(text)
 

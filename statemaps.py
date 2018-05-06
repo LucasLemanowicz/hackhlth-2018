@@ -85,12 +85,21 @@ PR_STATEMAP = {
     'pr-pill-count-confirmation': {
         'text-template': 'pr-pill-count-confirmation',
         'yes': {
-            'next-state': 'pr-refill'
+            'next-state': 'pr-card-check'
         },
         'no': {
             'next-state': 'pr-refill-no'
         }
     },
+    'pr-card-check': {
+        'text-template': 'pr-card-check',
+        'yes': {
+            'next-state': 'pr-refill'
+        },
+        'no': {
+            'next-state': 'pr-card-check-no'
+        }
+    }
     'pr-refill': {
         'text-template': 'pr-refill'
     },
