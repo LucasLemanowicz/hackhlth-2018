@@ -19,9 +19,13 @@ class State:
     def __init__(self, stateMap):
         self.current = 'welcome-greeting'
         self.stateMap = stateMap
+        self.name = 'Lucas'
 
     def updateState(self, stateMap):
         self.stateMap = stateMap
+
+    def updateName(self, name):
+        self.name = name
 
     def start(self):
         self.current = 'welcome-greeting'
@@ -74,6 +78,10 @@ def set_workflow(path):
         state.updateState(FINAL_STATEMAP)
         return 'Updated to FINAL Workflow'
 
+@app.route('/setName/<name>', methods=['GET'])
+def set_name(name):
+    state.updateName(name)
+
 
 # Redox Ednpoints
 @app.route('/redox', methods=['GET', 'POST'])
@@ -98,7 +106,7 @@ def redox_data():
 @ask.launch
 def launched():
     state.start()
-    text = render_template(state.text_template())
+    text = render_template(state.text_template(), name=state.name)
     return question(text)
 
 
