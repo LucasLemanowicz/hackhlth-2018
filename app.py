@@ -150,7 +150,7 @@ def pill_count_intent(amount):
     medication_list = human_and(medications)
 
     if amount != pill_amount:
-        text = render_template('pr-incorrect-pill-count', amount=pill_amount)
+        text = render_template('pr-incorrect-pill-count', amount=pill_amount, medications=medication_list)
         return question(text)
 
     state.next()
