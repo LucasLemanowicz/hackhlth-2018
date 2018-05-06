@@ -50,7 +50,7 @@ pr-will-check-again: Okay, I'll check in later.
 
 pr-incorrect-pill-count: Are you sure you shouldn't be taking {{ amount }} pills? Please try again.
 
-pr-pill-count-confirmation: That's right, you're taking {{ medications }}. I've also noticed you are running low on {{ low_on }}. Can I refill your prescription with Main Street Pharmacy using the VISA Card on file?
+pr-pill-count-confirmation: That's right, you're taking {{ medications }}. I've also noticed you are running low on {{ low_on }}. Can I refill your prescription with Main Street Pharmacy using the Chase VISA Card on file?
 
 pr-refill-no: Okay. Not a problem.
 
