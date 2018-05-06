@@ -138,7 +138,7 @@ def pill_count_intent(amount):
     return question(text)
 
 @ask.intent('CardIntent')
-def use_different_card(card):
+def use_different_card(cardname):
     return payment(28, card)
 
 
