@@ -60,6 +60,17 @@ def home():
     return render_template('hello-world')
 
 
+@app.route('/setWorkflow/<path>', methods=['GET'])
+def set_workflow(path):
+    if path == 'blood':
+        state.updateState(BP_STATEMAP)
+        return 'Updated to Blood Pressure Workflow'
+
+    if path == 'refill':
+        state.updateState(PR_STATEMAP)
+        return 'Updated to Refill Prescription Workflow'
+
+
 # Redox Ednpoints
 @app.route('/redox', methods=['GET', 'POST'])
 def redox():
