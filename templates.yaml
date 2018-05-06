@@ -61,7 +61,7 @@ pr-refill: Done.
 
 schedule-availability: Dr. Jones has availability tomorrow at {{ times }} in the afternoon. Which time works for you?
 
-make-appointment: Ok great, I've made an appointment with Dr. Jones at {{ hour }} PM. I've also pre-authorized your ten dollar co-pay to your saved Chase VISA card, as you've requested in the past. Dr. Jones is looking forward to seeing you.
+make-appointment: Ok great, I've made an appointment with Dr. Jones at {{ hour }} PM. I've also pre-authorized your ten dollar co-pay to your saved Chase VISA card. Dr. Jones is looking forward to seeing you.
 
 make-appointment-card: |
   Appointment with Dr. Jones tomorrow at {{ hour }}:00 PM
