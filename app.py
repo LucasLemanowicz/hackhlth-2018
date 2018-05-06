@@ -157,7 +157,7 @@ def medication_list_intent():
 # Appointment Scheduling
 @ask.intent('ScheduleVisitAvailabilityIntent')
 def schedule_visit_availability_intent():
-    availability = redox_api.get_schedule()
+    availability = [str(x) for x in redox_api.get_schedule()]
     availability_ord = human_or(availability)
 
     text = render_template('schedule-availability', times=availability_ord)
