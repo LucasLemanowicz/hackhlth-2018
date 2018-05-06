@@ -82,10 +82,10 @@ stateMap = {
 
 class State:
     def __init__(self):
-        self.current = "welcome-greeting"
+        self.current = 'bp-welcome-greeting'
 
     def start(self):
-        self.current = "welcome-greeting"
+        self.current = 'bp-welcome-greeting'
 
     def nextYes(self):
         self.current = stateMap[self.current]['yes']['next-state']
