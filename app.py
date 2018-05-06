@@ -19,10 +19,10 @@ stateMap = prStateMap
 
 class State:
     def __init__(self):
-        self.current = 'bp-welcome-greeting'
+        self.current = 'welcome-greeting'
 
     def start(self):
-        self.current = 'bp-welcome-greeting'
+        self.current = 'welcome-greeting'
 
     def nextYes(self):
         self.current = stateMap[self.current]['yes']['next-state']

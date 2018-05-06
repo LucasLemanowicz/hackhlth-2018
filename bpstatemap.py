@@ -1,6 +1,6 @@
 # blood pressure path
 bpStateMap = {
-    'bp-welcome-greeting': {
+    'welcome-greeting': {
         'text-template': 'bp-welcome-greeting',
         'yes': {
             'next-state': 'bp-measurement-yes',

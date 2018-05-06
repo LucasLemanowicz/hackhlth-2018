@@ -1,6 +1,6 @@
 # prescription refill path
 prStateMap = {
-	'pr-welcome-greeting': {
+	'welcome-greeting': {
 		'text-template': 'pr-welcome-greeting', 
 		'yes': {
 			'next-state': 'pr-pill-count-check'
