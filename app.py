@@ -189,8 +189,11 @@ def schedule_visit_availability_intent():
 @ask.intent('MakeAppointmentIntent', convert={'hour': int})
 def make_appointment_intent(hour):
     availability = redox_api.get_schedule()
+    availability_ord = human_or([str(x) for x in availability])
     if hour not in availability:
-        text = render_template('schedule-conflict', hour=hour)
+        text = render_template('schedule-conflict',
+                               hour=hour,
+                               times=availability_ord)
         return question(text)
 
     redox_api.make_appointment(hour)
