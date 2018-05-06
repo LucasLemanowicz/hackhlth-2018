@@ -47,7 +47,7 @@ pr-pill-count-check: Great! How many pills are you taking?
 pr-will-check-again: Okay, I'll check in later.
 
 pr-incorrect-pill-count: |
-  That doesn't sound right. Are you sure you shouldn't be taking {{ amount }} pills: {{ medications }}? Please try again.
+  That doesn't sound right. Are you sure you shouldn't be taking {{ amount }} pills: {{ medications }}? Please confirm with {{ amount }} pills.
 
 pr-pill-count-confirmation: That's right, you're taking {{ medications }}. I've also noticed you are running low on {{ low_on }}. Should we refill your prescription with Main Street Pharmacy? 
 
