@@ -42,7 +42,8 @@ stateMap = {
         }
     },
     'bp-measurement-again': {
-        'text-template': 'bp-measurement-again'
+        'text-template': 'bp-measurement-again',
+        'next-state': 'bp-measurement-confirm'
     },
     'bp-aspirin-prompt': {
         'text-template': 'bp-aspirin-prompt',
