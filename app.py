@@ -207,7 +207,9 @@ def make_appointment_intent(hour):
     text = render_template('make-appointment', hour=hour)
     card = render_template('make-appointment-card', hour=hour)
 
-    return question(text).simple_card(card).simple_card(success_card)
+    card = card + '. ' + success_card
+
+    return question(text).simple_card(card)
 
 
 @ask.session_ended
