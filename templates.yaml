@@ -29,7 +29,7 @@ bp-check-in-later: Okay. I'll check back in later.
 
 bp-measurement-confirm: Okay, I heard {{ systolic }} over {{ diastolic }}. Is this correct?
 
-bp-aspirin-prompt: Dr. Jones recommends an aspirin for this blood pressure level. Can you take one aspirin pill now?
+bp-aspirin-prompt: Dr. Jones recommends a nitroglycerin for this blood pressure level. Can you take one nitroglycerin pill now?
 
 bp-yes-and-send-to-dr: Great, and can I send your blood pressure reading to Dr. Jones?
 
