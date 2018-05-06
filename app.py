@@ -12,6 +12,22 @@ from flask_ask import (
 from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
 
+currentToNextStateMap = {
+    "welcome-greeting": "pill-verification",
+    "pill-verification": "pill-refill",
+    "pill-refill": "good-bye"
+}
+
+class State:
+    def __init__(self):
+        self.current = "welcome-greeting"
+
+    def start(self):
+        self.current = "welcome-greeting"
+
+    def next(self):
+        self.current = currentToNextStateMap[self.current]
+
 
 app = Flask(__name__)
 ask = Ask(app, '/ask/')
@@ -24,6 +40,8 @@ wallet = SoftheonWalletAPI(
     os.environ.get('SOFTHEON_CLIENT_SECRET', '')
 )
 
+
+state = State()
 
 # Web Endpoints
 @app.route('/', methods=['GET'])
@@ -53,24 +71,28 @@ def redox_data():
 # Amazon Alexa Endpoints
 @ask.launch
 def launched():
+    state.start()
     text = render_template('welcome-statement')
     return question(text)
 
 
 @ask.intent('YesIntent')
 def yes_intent():
+    state.next()
     text = render_template('pill-verification')
     return question(text)
 
 
 @ask.intent('NoIntent')
 def no_intent():
+    state.next()
     text = render_template('pill-rejection')
     return statement(text)
 
 
 @ask.intent('PillCountIntent', convert={'amount': int})
 def pill_count_intent(amount):
+    state.next()
     PILL_AMOUNT = 6
 
     if amount != PILL_AMOUNT:
