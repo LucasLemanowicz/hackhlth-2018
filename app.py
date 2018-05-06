@@ -12,6 +12,7 @@ from flask_ask import (
 from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
 
+
 # blood pressure path
 stateMap = {
     'welcome-greeting': {
@@ -25,7 +26,7 @@ stateMap = {
         'next-state': 'bp-measurement-confirm'
     },
     'bp-measurement-confirm': {
-        'text-template': 'bp-measurement-confirm'
+        'text-template': 'bp-measurement-confirm',
         'yes': {
             'next-state': 'aspirin',
         }
@@ -47,6 +48,7 @@ stateMap = {
     }
 }
 
+
 class State:
     def __init__(self):
         self.current = "welcome-greeting"
@@ -62,7 +64,7 @@ class State:
 
     def next(self):
         self.current = stateMap[self.current]['next-state']
-    
+
     def text_template(self):
         return stateMap[self.current]['text-template']
 
@@ -127,20 +129,23 @@ def no_intent():
     text = render_template(state.text_template())
     return statement(text)
 
-@ask.intent('BPIntent', convert={'bp_amount': str})
-def bp_intent(bp_amount):
+
+@ask.intent('BPIntent', convert={'systolic': int, 'diastolic': int})
+def bp_intent(systolic, diastolic):
     state.next()
-    text = render_template('bp-measurement-confirm', amount=BP_AMOUNT)
+    text = render_template('bp-measurement-confirm',
+                           systolic=systolic,
+                           diastolic=diastolic)
     return statement(text)
 
 
 @ask.intent('PillCountIntent', convert={'amount': int})
 def pill_count_intent(amount):
     state.next()
-    PILL_AMOUNT = 6
+    pill_amount = redox_api.medication_count()
 
-    if amount != PILL_AMOUNT:
-        text = render_template('incorrect-pill-count', amount=PILL_AMOUNT)
+    if amount != pill_amount:
+        text = render_template('incorrect-pill-count', amount=pill_amount)
         return statement(text)
 
     text = render_template('correct-pill-count')
@@ -149,7 +154,7 @@ def pill_count_intent(amount):
 
 @ask.session_ended
 def session_ended():
-    return "{}", 200
+    return '{}', 200
 
 
 @ask.intent('HelloIntent')
