@@ -81,6 +81,7 @@ def set_workflow(path):
 @app.route('/setName/<name>', methods=['GET'])
 def set_name(name):
     state.updateName(name)
+    return 'Updated name'
 
 
 # Redox Ednpoints
