@@ -85,7 +85,7 @@ def launched():
 @ask.intent('PRPathIntent')
 def set_state_map_pr():
     stateMap = prStateMap
-    return state('Okay, path changed to refill')
+    return statement('Okay, path changed to refill')
 
 
 @ask.intent('YesIntent')
