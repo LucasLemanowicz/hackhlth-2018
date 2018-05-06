@@ -9,8 +9,6 @@ payment-success: Payment of {{ amount }} dollars succeeded. Thank you.
 payment-success-card: |
   Payment of ${{ amount }} succeeded (Transaction ID: {{ transaction_id }})
 
-welcome-statement: Good morning Edith! It's time for you to take your morning medication. Can you take them now?
-
 pill-verification: Great! How many pills are you taking?
 
 pill-rejection: Ok, that's fine. I will remind you later.
@@ -21,7 +19,7 @@ medication-list: |
 redox-verification-error: Invalid Verification Token
 
 # blood pressure path
-bp-welcome-greeting: Hi Murray, it’s time to take your blood pressure. Can you take your blood pressure now.
+bp-welcome-greeting: Hi Lucas, it’s time to take your blood pressure. Can you take your blood pressure now.
 
 bp-measurement-yes: Great, I’ll give you a few minutes.
 
