@@ -84,7 +84,7 @@ def launched():
 
 @ask.intent('PRPathIntent')
 def set_state_map_pr():
-    stateMap = prstatemap
+    stateMap = prStateMap
     return
 
 
