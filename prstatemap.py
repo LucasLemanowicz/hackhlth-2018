@@ -31,6 +31,4 @@ prStateMap = {
 	'pr-refill-no': {
 		'text-template': 'pr-refill-no'
 	}
-	
-
 }
