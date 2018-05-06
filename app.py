@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request, session
+from flask import Flask, render_template
 from flask_cors import CORS
 from flask_ask import (
     Ask,
@@ -24,31 +24,31 @@ wallet = SoftheonWalletAPI(
 
 @app.route('/', methods=['GET'])
 def home():
-    return 'Hello, world!'
+    return render_template('hello-world')
 
 
 @ask.intent('HelloIntent')
 def hello(firstname):
-    text = 'Hello, ' + firstname
+    text = render_template('hello-name', name=firstname)
     return statement(text).simple_card('Hello', text)
 
 
 @ask.intent('PaymentIntent')
 def payment(amount):
 
-    PAYMENT_FAILURE = 'Payment failed, please try again.'
-    PAYMENT_SUCCESS = 'Payment of {} dollars succeeded. Thank you.'.format(
-        amount)
+    payment_failure = render_template('payment-failure')
+    payment_success = render_template('payment-success', amount=amount)
 
     status, data = wallet.make_payment(amount)
     if not status:
-        return statement(PAYMENT_FAILURE)
+        return statement(payment_failure)
 
-    success_card = 'Payment of ${} succeeded (Transaction ID: {})'.format(
-        data.get('paymentAmount', '0.00'),
-        data.get('result', []).get('merchantTransactionId', '422806694271965000')
-    )
-    return statement(PAYMENT_SUCCESS).simple_card(success_card)
+    transaction_id = data.get('result', []).get('merchantTransactionId', '-1')
+    success_card = render_template('payment-success-card',
+                                   amount=amount,
+                                   transaction_id=transaction_id)
+
+    return statement(payment_success).simple_card(success_card)
 
 
 if __name__ == '__main__':
