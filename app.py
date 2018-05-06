@@ -127,7 +127,7 @@ def yes_intent():
 def no_intent():
     state.nextNo()
     text = render_template(state.text_template())
-    return statement(text)
+    return question(text)
 
 
 @ask.intent('BPIntent', convert={'systolic': int, 'diastolic': int})
@@ -136,7 +136,7 @@ def bp_intent(systolic, diastolic):
     text = render_template('bp-measurement-confirm',
                            systolic=systolic,
                            diastolic=diastolic)
-    return statement(text)
+    return question(text)
 
 
 @ask.intent('PillCountIntent', convert={'amount': int})
