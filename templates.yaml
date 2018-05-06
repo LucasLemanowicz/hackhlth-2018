@@ -7,7 +7,7 @@ payment-failure: Payment failed, please try again.
 payment-success: Payment of {{ amount }} dollars succeeded. Thank you.
 
 payment-success-card: |
-  Payment of ${{ amount }} succeeded on {{ card }} (Transaction ID: {{ transaction_id }})
+  Payment of ${{ amount }} succeeded (Transaction ID: {{ transaction_id }})
 
 welcome-statement: Good morning Edith! It's time for you to take your morning medication. Can you take them now?
 
