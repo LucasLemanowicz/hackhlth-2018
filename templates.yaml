@@ -19,6 +19,9 @@ incorrect-pill-count: Are you sure you shouldn't be taking {{ amount }} pills?
 
 correct-pill-count: Ok great, goodbye.
 
+medication-list: |
+  You have {{ count }} medications: {{ medications }}
+
 redox-verification-error: Invalid Verification Token
 
 # blood pressure path

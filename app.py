@@ -152,6 +152,16 @@ def pill_count_intent(amount):
     return statement(text)
 
 
+@ask.intent('MedicationListIntent')
+def medication_list_intent():
+    medication_list = ', '.join(redox.medications())
+    count = len(medication_list)
+    text = render_template('medication-list',
+                           medications=medication_list,
+                           count=count)
+    return statement(text)
+
+
 @ask.session_ended
 def session_ended():
     return '{}', 200
