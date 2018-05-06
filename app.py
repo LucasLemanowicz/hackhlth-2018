@@ -44,7 +44,7 @@ stateMap = {
         }
     },
     'good-bye': {
-        'text-template': 'bp-good-bye'
+        'text-template': 'bp-thank-you'
     }
 }
 
