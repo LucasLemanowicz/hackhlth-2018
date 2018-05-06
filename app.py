@@ -137,6 +137,7 @@ def no_intent():
 @ask.intent('BPIntent', convert={'systolic': int, 'diastolic': int})
 def bp_intent(systolic, diastolic):
     state.next()
+    redox_api.record_blood_pressure(systolic, diastolic)
     text = render_template('bp-measurement-confirm',
                            systolic=systolic,
                            diastolic=diastolic)
@@ -158,6 +159,7 @@ def pill_count_intent(amount):
                            medications=medication_list,
                            low_on=medications[0])
     return question(text)
+
 
 @ask.intent('CardIntent')
 def use_different_card(cardname):

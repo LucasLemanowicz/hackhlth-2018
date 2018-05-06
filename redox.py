@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import requests
@@ -74,6 +75,46 @@ class RedoxAPI:
         resp = http.content
 
         print(resp)
+        return True
+
+    def record_blood_pressure(self, systolic, diastolic):
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + self.access_token
+        }
+        body = {
+            'Meta': {
+                'DataModel': 'Flowsheet',
+                'EventType': 'New'
+            },
+            'Patient': {
+                'Identifiers': [
+                    {
+                        'ID': '0000000001',
+                        'IDType': 'MR'
+                    }
+                ]
+            },
+            'Observations': [
+                {
+                    'DateTime': datetime.datetime.now().isoformat(),
+                    'Value': systolic,
+                    'ValueType': 'Numeric',
+                    'Code': 'BPSYS'
+                },
+                {
+                    'DateTime': datetime.datetime.now().isoformat(),
+                    'Value': diastolic,
+                    'ValueType': 'Numeric',
+                    'Code': 'BPDIA'
+                },
+
+            ]
+        }
+
+        http = requests.post(self.REDOX_ENDPOINT, headers=headers, json=body)
+        resp = http.content
+
         return True
 
     def medication_count(self):
