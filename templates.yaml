@@ -20,12 +20,12 @@ incorrect-pill-count: Are you sure you shouldn't be taking {{ amount }} pills?
 correct-pill-count: Ok great, goodbye.
 
 medication-list: |
-  You have {{ count }} medications: {{ medications }}
+  You have {{ count }} medications to take today: {{ medications }}
 
 redox-verification-error: Invalid Verification Token
 
 # blood pressure path
-bp-welcome-greeting: Hi Gertrude, it’s time to take your blood pressure. Can you take your blood pressure now.
+bp-welcome-greeting: Hi Murray, it’s time to take your blood pressure. Can you take your blood pressure now.
 
 bp-measurement-yes: Great, I’ll give you a few minutes to do that.
 
