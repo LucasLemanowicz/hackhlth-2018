@@ -57,3 +57,12 @@ pr-card-check: Should we use your Mastercard on file?
 pr-card-check-no: Okay, switching payment methods.
 
 pr-refill: Done.
+
+schedule-availability: Dr. Jones has availability tomorrow at {{ times }} in the afternoon. Which time works for you?
+
+make-appointment: Ok great, I've made an appointment with Dr. Jones at {{ hour }} PM. He's looking forward to seeing you.
+
+make-appointment-card: |
+  Appointment with Dr. Jones tomorrow at {{ hour }}:00 PM
+
+schedule-conflict: Unfortunately Dr. Jones is not available at {{ hour }} PM.

@@ -12,7 +12,7 @@ from flask_ask import (
 from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
 from statemaps import BP_STATEMAP, PR_STATEMAP
-from utils import clean_medication_name, human_and
+from utils import clean_medication_name, human_and, human_or
 
 
 class State:
@@ -152,6 +152,31 @@ def medication_list_intent():
                            medications=medication_list,
                            count=count)
     return statement(text)
+
+
+# Appointment Scheduling
+@ask.intent('ScheduleVisitAvailabilityIntent')
+def schedule_visit_availability_intent():
+    availability = redox_api.get_schedule()
+    availability_ord = human_or(availability)
+
+    text = render_template('schedule-availability', times=availability_ord)
+    return question(text)
+
+
+@ask.intent('MakeAppointmentIntent', convert={'hour': int})
+def make_appointment_intent(hour):
+    availability = redox_api.get_schedule()
+    if hour not in availability:
+        text = render_template('schedule-conflict', hour=hour)
+        return statement(text)
+
+    redox_api.make_appointment(hour)
+
+    text = render_template('make-appointment', hour=hour)
+    card = render_template('make-appointment-card', hour=hour)
+
+    return statement(text).simple_card(card)
 
 
 @ask.session_ended

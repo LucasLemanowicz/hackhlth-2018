@@ -46,9 +46,35 @@ class RedoxAPI:
         http = requests.post(self.REDOX_ENDPOINT, headers=headers, json=body)
         resp = http.content
 
-        # TODO: Finish this function
-        print(resp)
+        # Unfortunately the API call above is not implemented, so we return an
+        # object with available time slots for that given day
+        return [2, 3, 5]
 
+    def make_appointment(self, hour):
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + self.access_token
+        }
+        body = {
+            'Meta': {
+                'DataModel': 'Scheduling',
+                'EventType': 'New'
+            },
+            'Visit': {
+                'VisitNumber': '1234',
+                'VisitDateTime': '2018-05-03T{}:00:00.000Z'.format(12 + hour),
+                'Duration': 60,
+                'Location': {
+                    'Department': 'Medication Department'
+                }
+            }
+        }
+
+        http = requests.post(self.REDOX_ENDPOINT, headers=headers, json=body)
+        resp = http.content
+
+        print(resp)
+        return True
 
     def medication_count(self):
         return len(self.transmission.get('Medications', []))

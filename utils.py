@@ -14,6 +14,19 @@ def human_and(item_list):
     return ', '.join(item_list[:-1]) + ', and ' + item_list[-1]
 
 
+def human_or(item_list):
+    if len(item_list) == 0:
+        return ''
+
+    if len(item_list) == 1:
+        return ' '.join(item_list)
+
+    if len(item_list) == 2:
+        return ', or '.join(item_list)
+
+    return ', '.join(item_list[:-1]) + ', or ' + item_list[-1]
+
+
 def clean_medication_name(name):
     try:
         return re.search('[a-zA-Z-_ ]+', name).group()
