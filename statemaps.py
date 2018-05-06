@@ -99,7 +99,10 @@ PR_STATEMAP = {
         'no': {
             'next-state': 'pr-card-check-no'
         }
-    }
+    },
+    'pr-card-check-no': {
+        'text-template': 'pr-card-check-no',
+    },
     'pr-refill': {
         'text-template': 'pr-refill'
     },
