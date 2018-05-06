@@ -75,8 +75,8 @@ stateMap = {
     'bp-okay-and-good-bye': {
         'text-template': 'bp-okay-and-good-bye'
     },
-    'thanks-and-good-bye': {
-        'text-template': 'thanks-and-good-bye'
+    'bp-thanks-and-good-bye': {
+        'text-template': 'bp-thanks-and-good-bye'
     }
 }
 
