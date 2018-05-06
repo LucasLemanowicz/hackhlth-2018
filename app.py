@@ -11,7 +11,7 @@ from flask_ask import (
 )
 from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
-from statemaps import BP_STATEMAP, PR_STATEMAP
+from statemaps import BP_STATEMAP, PR_STATEMAP, FINAL_STATEMAP
 from utils import clean_medication_name, human_and, human_or
 
 
@@ -69,6 +69,10 @@ def set_workflow(path):
     if path == 'refill':
         state.updateState(PR_STATEMAP)
         return 'Updated to Refill Prescription Workflow'
+
+    if path == 'final':
+        state.updateState(FINAL_STATEMAP)
+        return 'Updated to FINAL Workflow'
 
 
 # Redox Ednpoints

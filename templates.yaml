@@ -66,3 +66,6 @@ make-appointment-card: |
   Appointment with Dr. Jones tomorrow at {{ hour }}:00 PM
 
 schedule-conflict: Unfortunately Dr. Jones is not available at {{ hour }} PM.
+
+# final
+fr-welcome-greeting: Hi Lucas, have you taken your morning medication?
