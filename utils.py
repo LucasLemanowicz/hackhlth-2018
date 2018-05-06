@@ -9,9 +9,9 @@ def human_and(item_list):
         return ' '.join(item_list)
 
     if len(item_list) == 2:
-        return ' and '.join(item_list)
+        return ', and '.join(item_list)
 
-    return ', '.join(item_list[:-1]) + ' and ' + item_list[-1]
+    return ', '.join(item_list[:-1]) + ', and ' + item_list[-1]
 
 
 def clean_medication_name(name):
