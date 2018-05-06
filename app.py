@@ -9,6 +9,7 @@ from flask_ask import (
     session as ask_session,
     statement
 )
+from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
 
 
@@ -16,16 +17,19 @@ app = Flask(__name__)
 ask = Ask(app, '/ask/')
 CORS(app)
 
-# Initialize the Softheon Wallet for payment processing
+# Initialize the sponsor APIs
+redox_api = RedoxAPI()
 wallet = SoftheonWalletAPI(
     os.environ.get('SOFTHEON_CLIENT_ID', ''),
     os.environ.get('SOFTHEON_CLIENT_SECRET', '')
 )
 
+
 # Web Endpoints
 @app.route('/', methods=['GET'])
 def home():
     return render_template('hello-world')
+
 
 # Redox Ednpoints
 @app.route('/redox', methods=['GET', 'POST'])
@@ -36,6 +40,15 @@ def redox():
 
     if 'challenge' in request.args:
         return request.args.get('challenge')
+
+    redox_api.transmission = request
+    return ''
+
+
+@app.route('/redox/data', methods=['GET'])
+def redox_data():
+    return str(redox_api.transmission)
+
 
 # Amazon Alexa Endpoints
 @ask.launch
