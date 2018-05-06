@@ -16,11 +16,17 @@ from utils import human_and
 
 # blood pressure path
 stateMap = {
-    'welcome-greeting': {
-        'text-template': 'bp-greeting',
+    'bp-welcome-greeting': {
+        'text-template': 'bp-welcome-greeting',
         'yes': {
             'next-state': 'bp-measurement-yes',
+        },
+        'no': {
+            'next-state': 'bp-check-in-later',
         }
+    },
+    'bp-check-in-later': {
+        'text-template': 'bp-check-in-later'
     },
     'bp-measurement-yes': {
         'text-template': 'bp-measurement-yes',
@@ -29,23 +35,47 @@ stateMap = {
     'bp-measurement-confirm': {
         'text-template': 'bp-measurement-confirm',
         'yes': {
-            'next-state': 'aspirin',
-        }
-    },
-    'aspirin': {
-        'text-template': 'bp-aspirin-prompt',
+            'next-state': 'bp-aspirin-prompt',
+        },
         'no': {
-            'next-state': 'send-to-dr',
+            'next-state': 'bp-measurement-again',
         }
     },
-    'send-to-dr': {
-        'text-template': 'bp-send-to-dr',
+    'bp-measurement-again': {
+        'text-template': 'bp-measurement-again'
+    },
+    'bp-aspirin-prompt': {
+        'text-template': 'bp-aspirin-prompt',
         'yes': {
-            'next-state': 'good-bye',
+            'next-state': 'bp-yes-and-send-to-dr',
+        },
+        'no': {
+            'next-state': 'bp-no-and-send-to-dr',
         }
     },
-    'good-bye': {
-        'text-template': 'bp-thank-you'
+    'bp-yes-and-send-to-dr': {
+        'text-template': 'bp-yes-and-send-to-dr',
+        'yes': {
+            'next-state': 'bp-thanks-and-good-bye',
+        },
+        'no': {
+            'next-state': 'bp-okay-and-good-bye',
+        }
+    },
+    'bp-no-and-send-to-dr': {
+        'text-template': 'bp-no-and-send-to-dr',
+        'yes': {
+            'next-state': 'bp-thanks-and-good-bye',
+        },
+        'no': {
+            'next-state': 'bp-okay-and-good-bye',
+        }
+    },
+    'bp-okay-and-good-bye': {
+        'text-template': 'bp-okay-and-good-bye'
+    },
+    'thanks-and-good-bye': {
+        'text-template': 'thanks-and-good-bye'
     }
 }
 
