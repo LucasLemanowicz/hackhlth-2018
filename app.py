@@ -15,40 +15,45 @@ from utils import clean_medication_name, human_and
 from bpstatemap import bpStateMap
 from prstatemap import prStateMap
 
-stateMap = bpStateMap
 
 class State:
-    def __init__(self):
+    def __init__(self, stateMap):
         self.current = 'welcome-greeting'
+        self.stateMap = stateMap
+
+    def updateState(self, stateMap):
+        self.stateMap = stateMap
 
     def start(self):
         self.current = 'welcome-greeting'
 
     def nextYes(self):
-        self.current = stateMap[self.current]['yes']['next-state']
+        self.current = self.stateMap[self.current]['yes']['next-state']
 
     def nextNo(self):
-        self.current = stateMap[self.current]['no']['next-state']
+        self.current = self.stateMap[self.current]['no']['next-state']
 
     def next(self):
-        self.current = stateMap[self.current]['next-state']
+        self.current = self.stateMap[self.current]['next-state']
 
     def text_template(self):
-        return stateMap[self.current]['text-template']
+        return self.stateMap[self.current]['text-template']
 
 app = Flask(__name__)
 ask = Ask(app, '/ask/')
 CORS(app)
 
 # Initialize the sponsor APIs
-redox_api = RedoxAPI()
+redox_api = RedoxAPI(
+    os.environ.get('REDOX_API_KEY', ''),
+    os.environ.get('REDOX_SOURCE_SECRET', '')
+)
 wallet = SoftheonWalletAPI(
     os.environ.get('SOFTHEON_CLIENT_ID', ''),
     os.environ.get('SOFTHEON_CLIENT_SECRET', '')
 )
 
-
-state = State()
+state = State(bpStateMap)
 
 # Web Endpoints
 @app.route('/', methods=['GET'])
@@ -84,7 +89,7 @@ def launched():
 
 @ask.intent('PRPathIntent')
 def set_state_map_pr():
-    stateMap = prStateMap
+    state.updateState(prStateMap)
     return statement('Okay, path changed to refill')
 
 
