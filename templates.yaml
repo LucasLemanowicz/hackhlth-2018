@@ -18,3 +18,5 @@ pill-rejection: Ok, that's fine. I will remind you later.
 incorrect-pill-count: Are you sure you shouldn't be taking {{ amount }} pills?
 
 correct-pill-count: Ok great, goodbye.
+
+redox-verification-error: Invalid Verification Token

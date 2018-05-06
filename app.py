@@ -30,6 +30,10 @@ def home():
 # Redox Ednpoints
 @app.route('/redox', methods=['GET', 'POST'])
 def redox():
+    verification_token = request.headers.get('verification-token', '')
+    if verification_token != os.environ.get('REDOX_VERIFICATION_TOKEN', ''):
+        return render_template('redox-verification-error')
+
     if 'challenge' in request.args:
         return request.args.get('challenge')
 
