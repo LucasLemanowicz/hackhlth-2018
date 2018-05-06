@@ -1,4 +1,3 @@
-import json
 import os
 
 from flask import Flask, render_template, request
@@ -60,7 +59,7 @@ def redox():
     if 'challenge' in request.args:
         return request.args.get('challenge')
 
-    redox_api.transmission = json.loads(request.text)
+    redox_api.transmission = request.get_json()
     return ''
 
 
