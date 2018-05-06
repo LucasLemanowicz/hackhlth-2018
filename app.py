@@ -86,6 +86,7 @@ def launched():
     text = render_template(state.text_template())
     return question(text)
 
+
 @ask.intent('PRPathIntent')
 def set_state_map_pr():
     state.updateState(PR_STATEMAP)
@@ -96,8 +97,8 @@ def set_state_map_pr():
 def yes_intent():
     state.nextYes()
     if state.current == 'pr-refill':
-        payment(98)
-        return
+        return payment(98)
+
     text = render_template(state.text_template())
     return question(text)
 
@@ -126,7 +127,7 @@ def pill_count_intent(amount):
         text = render_template('pr-incorrect-pill-count', amount=pill_amount)
         return statement(text)
 
-    state.next()    
+    state.next()
     text = render_template('pr-pill-count-confirmation', amount=pill_amount)
     return question(text)
 
