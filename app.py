@@ -129,7 +129,7 @@ def yes_intent():
 def no_intent():
     state.nextNo()
     if state.current == 'pr-card-check-no':
-        return payment(28)
+        return payment(28, 'mastercard')
     text = render_template(state.text_template())
     return question(text)
 
@@ -198,10 +198,16 @@ def make_appointment_intent(hour):
 
     redox_api.make_appointment(hour)
 
+    status, data = wallet.make_payment(10)
+    transaction_id = data.get('result', []).get('merchantTransactionId', '-1')
+    success_card = render_template('payment-success-card',
+                                   amount=10,
+                                   transaction_id=transaction_id)
+
     text = render_template('make-appointment', hour=hour)
     card = render_template('make-appointment-card', hour=hour)
 
-    return question(text).simple_card(card)
+    return question(text).simple_card(card).simple_card(success_card)
 
 
 @ask.session_ended
