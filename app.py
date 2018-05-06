@@ -29,13 +29,13 @@ def hello(firstname):
 
 
 @ask.intent('PaymentIntent')
-def payment(payment_amount):
+def payment(amount):
 
     PAYMENT_FAILURE = 'Payment failed, please try again.'
     PAYMENT_SUCCESS = 'Payment of {} dollars succeeded. Thank you.'.format(
-        payment_amount)
+        amount)
 
-    status, data = wallet.make_payment(payment_amount)
+    status, data = wallet.make_payment(amount)
     if not status:
         return statement(PAYMENT_FAILURE)
 
