@@ -115,7 +115,7 @@ def yes_intent():
         return payment(28, 'mastercard')
     if state.current == 'bp-thanks-and-good-bye':
         text = render_template(state.text_template())
-        return statement(text).standard_card(
+        return question(text).standard_card(
             title='Blood Pressure Chart',
             text='Blood pressure has been steadily rising',
             small_image_url='https://i.imgur.com/S0Por4w.png',
@@ -151,7 +151,7 @@ def pill_count_intent(amount):
 
     if amount != pill_amount:
         text = render_template('pr-incorrect-pill-count', amount=pill_amount)
-        return statement(text)
+        return question(text)
 
     state.next()
     text = render_template('pr-pill-count-confirmation',
@@ -173,7 +173,7 @@ def medication_list_intent():
     text = render_template('medication-list',
                            medications=medication_list,
                            count=count)
-    return statement(text)
+    return question(text)
 
 
 # Appointment Scheduling
@@ -198,7 +198,7 @@ def make_appointment_intent(hour):
     text = render_template('make-appointment', hour=hour)
     card = render_template('make-appointment-card', hour=hour)
 
-    return statement(text).simple_card(card)
+    return question(text).simple_card(card)
 
 
 @ask.session_ended
@@ -220,14 +220,14 @@ def payment(amount, card):
 
     status, data = wallet.make_payment(amount)
     if not status:
-        return statement(payment_failure)
+        return question(payment_failure)
 
     transaction_id = data.get('result', []).get('merchantTransactionId', '-1')
     success_card = render_template('payment-success-card',
                                    amount=amount,
                                    transaction_id=transaction_id)
 
-    return statement(payment_success).simple_card(success_card)
+    return question(payment_success).simple_card(success_card)
 
 
 # Launch the server
