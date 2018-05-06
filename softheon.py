@@ -3,31 +3,14 @@ import json
 import os
 
 import requests
-#from softheon.wallet.api.client import SoftheonWalletAPI
+
+from scaffolding import CREDIT_CARD
 
 
 class SoftheonWalletAPI:
     TOKEN_ENDPOINT = 'https://hack.softheon.io/oauth2/connect/token'
     CREDITCARD_ENDPOINT = 'https://hack.softheon.io/api/payments/v1/creditcards'
     PAYMENT_ENDPOINT = 'https://hack.softheon.io/api/payments/v1/payments'
-
-    BILLING_ADDRESS = {
-        'address1': '111 test',
-        'address2': '111 test',
-        'city': 'Stony Brook',
-        'state': 'NY',
-        'zipCode': '11111'
-    }
-
-    CREDIT_CARD = {
-        'cardNumber': '4134185779995000',
-        'securityCode': '123',
-        'expirationMonth': 3,
-        'expirationYear': 2018,
-        'cardHolderName': 'Test',
-        'billingAddress': BILLING_ADDRESS,
-        'email': 'example@example.com',
-    }
 
     def __init__(self, client_id, client_secret):
         self.client_id = client_id
@@ -57,7 +40,7 @@ class SoftheonWalletAPI:
             'Authorization': 'Bearer ' + self.access_token
         }
 
-        body = str(self.CREDIT_CARD)
+        body = str(CREDIT_CARD)
 
         http = requests.post(self.CREDITCARD_ENDPOINT, headers=headers,
                              data=body)
