@@ -126,6 +126,7 @@ def pill_count_intent(amount):
         text = render_template('pr-incorrect-pill-count', amount=pill_amount)
         return statement(text)
 
+    state.next()    
     text = render_template('pr-pill-count-confirmation', amount=pill_amount)
     return question(text)
 
