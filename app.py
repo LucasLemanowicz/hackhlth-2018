@@ -11,9 +11,8 @@ from flask_ask import (
 )
 from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
+from statemaps import BP_STATEMAP, PR_STATEMAP
 from utils import clean_medication_name, human_and
-from bpstatemap import bpStateMap
-from prstatemap import prStateMap
 
 
 class State:
@@ -53,7 +52,7 @@ wallet = SoftheonWalletAPI(
     os.environ.get('SOFTHEON_CLIENT_SECRET', '')
 )
 
-state = State(bpStateMap)
+state = State(BP_STATEMAP)
 
 # Web Endpoints
 @app.route('/', methods=['GET'])
@@ -89,7 +88,7 @@ def launched():
 
 @ask.intent('PRPathIntent')
 def set_state_map_pr():
-    state.updateState(prStateMap)
+    state.updateState(PR_STATEMAP)
     return statement('Okay, path changed to refill')
 
 
