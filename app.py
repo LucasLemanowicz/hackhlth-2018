@@ -59,7 +59,7 @@ def redox():
     if 'challenge' in request.args:
         return request.args.get('challenge')
 
-    redox_api.transmission = request
+    redox_api.transmission = json.loads(request.text)
     return ''
 
 
