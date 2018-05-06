@@ -4,7 +4,7 @@ hello-name: Hello {{ name }}
 
 payment-failure: Payment failed, please try again.
 
-payment-success: Payment of {{ amount }} dollars succeeded. Thank you.
+payment-success: Payment of {{ amount }} dollars on {{ card }} succeeded. Thank you.
 
 payment-success-card: |
   Payment of ${{ amount }} succeeded (Transaction ID: {{ transaction_id }})

@@ -97,7 +97,7 @@ def set_state_map_pr():
 def yes_intent():
     state.nextYes()
     if state.current == 'pr-refill':
-        return payment(28)
+        return payment(28, 'mastercard')
 
     text = render_template(state.text_template())
     return question(text)
@@ -107,7 +107,7 @@ def yes_intent():
 def no_intent():
     state.nextNo()
     if state.current == 'pr-card-check-no':
-        return payment(98)
+        return payment(28)
     text = render_template(state.text_template())
     return question(text)
 
@@ -137,6 +137,10 @@ def pill_count_intent(amount):
                            low_on=medications[0])
     return question(text)
 
+@ask.intent('CardIntent')
+def use_different_card(card):
+    return payment(28, card)
+
 
 @ask.intent('MedicationListIntent')
 def medication_list_intent():
@@ -162,10 +166,10 @@ def hello(firstname):
 
 
 @ask.intent('PaymentIntent')
-def payment(amount):
+def payment(amount, card):
 
     payment_failure = render_template('payment-failure')
-    payment_success = render_template('payment-success', amount=amount)
+    payment_success = render_template('payment-success', amount=amount, card=card)
 
     status, data = wallet.make_payment(amount)
     if not status:
