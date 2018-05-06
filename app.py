@@ -1,8 +1,13 @@
 import os
 
-from flask import Flask
+from flask import Flask, request, session
 from flask_cors import CORS
-from flask_ask import Ask, statement
+from flask_ask import (
+    Ask,
+    request as ask_request,
+    session as ask_session,
+    statement
+)
 from softheon import SoftheonWalletAPI
 
 
