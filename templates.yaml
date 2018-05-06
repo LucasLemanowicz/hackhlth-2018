@@ -20,3 +20,16 @@ incorrect-pill-count: Are you sure you shouldn't be taking {{ amount }} pills?
 correct-pill-count: Ok great, goodbye.
 
 redox-verification-error: Invalid Verification Token
+
+# blood pressure path
+bp-greeting: Hi Gertrude, it’s time to take your blood pressure. Can you take your blood pressure now.
+
+bp-measurement-yes: Great, I’ll give you a few minutes to do that.
+
+bp-measurement-confirm: Okay, I heard you say ${{ bp_amount }}. Is this correct?
+
+bp-aspirin-prompt: Dr. Jones recommended that you take one aspirin pill if your blood pressure is at this level. Can you take an aspirin pill right now?
+
+bp-send-to-dr: Okay, let’s check your blood pressure again later today. I’ll set a reminder. Can I send your blood pressure reading to Dr. Jones?
+
+bp-thank-you: Great. Thanks, Gertrude.

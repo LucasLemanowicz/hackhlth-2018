@@ -12,10 +12,39 @@ from flask_ask import (
 from redox import RedoxAPI
 from softheon import SoftheonWalletAPI
 
-currentToNextStateMap = {
-    "welcome-greeting": "pill-verification",
-    "pill-verification": "pill-refill",
-    "pill-refill": "good-bye"
+# blood pressure path
+stateMap = {
+    'welcome-greeting': {
+        'text-template': 'bp-greeting',
+        'yes': {
+            'next-state': 'bp-measurement-yes',
+        }
+    },
+    'bp-measurement-yes': {
+        'text-template': 'bp-measurement-yes',
+        'next-state': 'bp-measurement-confirm'
+    },
+    'bp-measurement-confirm': {
+        'text-template': 'bp-measurement-confirm'
+        'yes': {
+            'next-state': 'aspirin',
+        }
+    },
+    'aspirin': {
+        'text-template': 'bp-aspirin-prompt',
+        'no': {
+            'next-state': 'send-to-dr',
+        }
+    },
+    'send-to-dr': {
+        'text-template': 'bp-send-to-dr',
+        'yes': {
+            'next-state': 'good-bye',
+        }
+    },
+    'good-bye': {
+        'text-template': 'bp-good-bye'
+    }
 }
 
 class State:
@@ -25,8 +54,17 @@ class State:
     def start(self):
         self.current = "welcome-greeting"
 
+    def nextYes(self):
+        self.current = stateMap[self.current]['yes']['next-state']
+
+    def nextNo(self):
+        self.current = stateMap[self.current]['no']['next-state']
+
     def next(self):
-        self.current = currentToNextStateMap[self.current]
+        self.current = stateMap[self.current]['next-state']
+    
+    def text_template(self):
+        return stateMap[self.current]['text-template']
 
 
 app = Flask(__name__)
@@ -72,21 +110,27 @@ def redox_data():
 @ask.launch
 def launched():
     state.start()
-    text = render_template('welcome-statement')
+    text = render_template(state.text_template())
     return question(text)
 
 
 @ask.intent('YesIntent')
 def yes_intent():
-    state.next()
-    text = render_template('pill-verification')
+    state.nextYes()
+    text = render_template(state.text_template())
     return question(text)
 
 
 @ask.intent('NoIntent')
 def no_intent():
+    state.nextNo()
+    text = render_template(state.text_template())
+    return statement(text)
+
+@ask.intent('BPIntent', convert={'bp_amount': str})
+def bp_intent(bp_amount):
     state.next()
-    text = render_template('pill-rejection')
+    text = render_template('bp-measurement-confirm', amount=BP_AMOUNT)
     return statement(text)
 
 
