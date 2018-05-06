@@ -109,6 +109,13 @@ def yes_intent():
     state.nextYes()
     if state.current == 'pr-refill':
         return payment(28, 'mastercard')
+    if state.current == 'bp-thanks-and-good-bye':
+        text = render_template(state.text_template())
+        return statement(text).standard_card(
+            title='Blood Pressure Chart',
+            text='Blood pressure has been steadily rising',
+            small_image_url='https://i.imgur.com/S0Por4w.png',
+            large_image_url='https://i.imgur.com/S0Por4w.png')
 
     text = render_template(state.text_template())
     return question(text)
